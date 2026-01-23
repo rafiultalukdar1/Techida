@@ -1695,42 +1695,46 @@ ul li {
   color: var(--primaryColor);
 }
 
+/* First input spacing (for two-column layout) */
 .contact-form .first-input {
   margin-right: 15px;
 }
 
-.contact-form input {
+.contact-form input,
+.contact-form textarea {
   width: 100%;
-  outline: none;
   padding: 18px 20px;
-  border-radius: 4px;
   margin-top: 22px;
   background: var(--backgroundColor);
   color: var(--peragraphColor);
   border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.contact-form input:focus {
-  border-color: #1fa84f7c;
-}
-
-.contact-form input::placeholder {
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
   color: var(--peragraphColor);
+  opacity: 0.7;
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #1fa84f7c;
+  box-shadow: 0 0 0 2px rgba(31, 168, 79, 0.2);
 }
 
 .contact-form textarea {
-  width: 100%;
-  border: none;
-  outline: none;
-  padding: 18px 20px;
-  border-radius: 4px;
-  margin-top: 22px;
-  background: var(--backgroundColor);
-  color: var(--peragraphColor);
-}
-
-.contact-form textarea::placeholder {
-  color: var(--peragraphColor);
+  resize: vertical;
+  min-height: 140px;
 }
 
 .contact-form button {
