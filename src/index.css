@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+@import 'swiper/css';
+
+/* The original site applied :hover everywhere, including on touch screens where a tap triggers it
+   (flip cards, project overlays, team overlays). Tailwind v4 gates hover behind a hover-capable media
+   query by default, so restore plain :hover. */
+@custom-variant hover (&:hover);
+
+/* Bootstrap 5.0 breakpoints, so every layout switches at the same widths as the original site. */
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1400px;
+
+  --font-sans: 'Outfit Variable', serif;
+
+  /* Colours resolve through CSS variables so the dark theme only has to swap the variables. */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-heading: var(--heading);
+  --color-para: var(--para);
+  --color-panel: var(--panel);
+  --color-page: var(--page);
+
+  --animate-float: float 5s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.5s linear infinite;
+  --animate-pulse-ring-slow: pulse-ring 3s linear infinite;
+  --animate-explode: explode 0.5s forwards;
+  --animate-desplode: desplode 0.5s forwards;
+  --animate-slide-down: slide-down 0.35s ease-out;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(-15px);
+    }
+    50% {
+      transform: translateY(0);
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(0.3);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(2);
+    }
+  }
+  @keyframes explode {
+    from {
+      width: 0;
+      height: 0;
+      margin-left: 0;
+      margin-top: 0;
+      background-color: #707070;
+    }
+    to {
+      width: 400px;
+      height: 400px;
+      margin-left: -200px;
+      margin-top: -200px;
+      background-color: #404742;
+    }
+  }
+  @keyframes desplode {
+    from {
+      width: 400px;
+      height: 400px;
+      margin-left: -200px;
+      margin-top: -200px;
+      background-color: #404742;
+    }
+    to {
+      width: 0;
+      height: 0;
+      margin-left: 0;
+      margin-top: 0;
+      background-color: #707070;
+    }
+  }
+  @keyframes slide-down {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+:root {
+  --primary: #1fa84f;
+  --secondary: #5e5e5e;
+  --ink: #000;
+  --paper: #fff;
+  --heading: #404742;
+  --para: #5e5e5e;
+  --panel: #eff0ef;
+  --page: #f8f6f4;
+}
+
+:root.dark {
+  --primary: #0f722e;
+  --secondary: #8c8c8c;
+  --ink: #ffffff;
+  --paper: #121212;
+  --heading: #d3d9d6;
+  --para: #a6a6a6;
+  --panel: #1c1c1c;
+  --page: #232323;
+}
+
+/* Site-wide element defaults carried over from the original stylesheet (Bootstrap reboot + style.css). */
+@layer base {
+  body {
+    background-color: var(--page);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--heading);
+  }
+  p {
+    margin: 0;
+    font-weight: 400;
+    color: var(--para);
+  }
+  a {
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  img {
+    display: inline;
+  }
+  li {
+    display: inline-block;
+  }
+  ::selection {
+    color: var(--paper);
+    background: var(--primary);
+  }
+}
+
+/* The original forced paragraph metrics on small screens with !important; keep that behaviour. */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  p {
+    line-height: 26px !important;
+  }
+}
+@media (max-width: 575.98px) {
+  p {
+    line-height: 23px !important;
+    font-size: 15px !important;
+  }
+}
